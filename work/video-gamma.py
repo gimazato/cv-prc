@@ -36,6 +36,7 @@ for i in range(frame_count):
 
     # 現在読んでいるフレームを描画
     # 処理結果見えなくていいから軽量化したい場合はここをコメントアウト
+    # dockerだとx-winndow? 共有設定が何かしら必要。要調査
     #cv2.imshow("frame", frame)
 
     # qを押せば処理を中止できるようにしておく
