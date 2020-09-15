@@ -1,14 +1,17 @@
 import cv2
 import numpy as np
 
-def create_gamma_img(gamma, img):
+def convert_gamma(gamma, img):
   gamma_cvt_lut = np.zeros((256,1), dtype=np.uint8)
   for i in range(256):
     gamma_cvt_lut[i][0] = 255*(float(i)/255)**(1.0/gamma)
   return cv2.LUT(img, gamma_cvt_lut)
 
-def create_equalizeHist_img(img):
+def convert_equalizeHist(img):
   return cv2.equalizeHist(img)
+
+def convert_grayscale(img):
+  return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 
 print("---start---")
@@ -36,7 +39,8 @@ for i in range(frame_count):
     ret, frame = video.read()
     ### ここに加工処理などを記述する 
     #frame = create_gamma_img(2, frame)
-    frame = create_equalizeHist_img(frame)
+    frame = convert_grayscale(frame)
+    frame = convert_equalizeHist(frame)
 
     
     writer.write(frame)
